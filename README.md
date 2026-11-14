@@ -1,19 +1,31 @@
-# Selenium POM Framework with GitHub and Jenkins CI Integration
+# SauceDemo Automation Framework
 
-## 📌 Project Overview
+## Project Overview
 
-This project demonstrates an end\-to\-end Selenium Automation Framework built using Java, Selenium WebDriver, TestNG, Maven, Page Object Model (POM), GitHub, and Jenkins.
+This project demonstrates an end\-to\-end Selenium Automation Framework developed using Java, Selenium WebDriver, TestNG, Maven, GitHub, and Jenkins.
 
-The framework automates a Login and Logout workflow and is integrated with Jenkins to achieve Continuous Integration (CI).
-
-This project was developed as a hands\-on learning initiative to understand real\-world automation framework development and CI/CD concepts.
+The framework follows the Page Object Model (POM) design pattern and automates a complete e\-commerce workflow using the SauceDemo application.
 
 ---
 
-## 🚀 Technologies Used
+## Application Under Test
+
+URL:
+
+[https://www.saucedemo.com/](https://www.saucedemo.com/)
+
+Test Credentials:
+
+Username: standard\_user
+
+Password: secret\_sauce
+
+---
+
+## Tech Stack
 
 - Java 21
-- Selenium WebDriver 4.37
+- Selenium WebDriver
 - TestNG
 - Maven
 - Git
@@ -24,267 +36,136 @@ This project was developed as a hands\-on learning initiative to understand real
 
 ---
 
-## 🏗 Framework Design
+## Framework Features
 
-The framework follows the Page Object Model (POM) design pattern.
+### Implemented
 
-Benefits:
+✅ Login Functionality
 
-- Better maintainability
-- Improved code reusability
-- Separation of test logic and page locators
-- Easy framework scalability
+✅ Products Page Validation
+
+✅ GitHub Integration
+
+✅ Jenkins Integration
+
+✅ Maven Build Execution
+
+✅ TestNG Framework
+
+✅ Page Object Model Design
 
 ---
 
-## 📂 Project Structure
+## Current Framework Structure
 
-Selenium\-POM\-Jenkins
+src
 
 │
 
-├── src
+├── main
 
-│   ├── main
+│   └── java
 
-│   │   └── java
+│       ├── pages
 
-│   │       ├── pages
+│       │   ├── LoginPage.java
 
-│   │       │   ├── LoginPage.java
-
-│   │       │   └── HomePage.java
-
-│   │       │
-
-│   │       └── utils
-
-│   │           └── DriverFactory.java
-
-│   │
-
-│   └── test
-
-│       ├── java
-
-│       │   └── tests
-
-│       │       ├── BaseTest.java
-
-│       │       └── LoginLogoutTest.java
+│       │   └── ProductsPage.java
 
 │       │
 
-│       └── resources
+│       └── utils
 
-│           └── config.properties
+│           └── DriverFactory.java
 
 │
 
-├── pom.xml
+├── test
+
+│   └── java
+
+│       └── tests
+
+│           ├── BaseTest.java
+
+│           └── LoginTest.java
+
+│
 
 ├── testng.xml
 
-├── .gitignore
+├── pom.xml
 
 └── README.md
 
 ---
 
-## ✅ Test Scenario Automated
+## Implemented Test Scenario
 
-### Login Functionality
+### Login Validation
 
 1. Launch Browser
-2. Navigate to Application URL
+2. Navigate to SauceDemo Application
 3. Enter Username
 4. Enter Password
-5. Click Login Button
-6. Verify Successful Login
+5. Click Login
+6. Verify Products Page Displayed
 
-### Logout Functionality
+Expected Result:
 
-1. Click Logout Button
-2. Verify User Returns To Login Page
-
----
-
-## 🔧 Prerequisites
-
-Before running this project, ensure the following software is installed:
-
-- Java JDK 21
-- Maven 3.x
-- Git
-- Google Chrome Browser
-- IntelliJ IDEA (Optional)
-- Jenkins (Optional for CI)
+User should successfully navigate to the Products page.
 
 ---
 
-## ⚙️ Setup Instructions
+## In Progress
 
-### Clone Repository
+The framework is currently being expanded to support complete end\-to\-end e\-commerce automation.
 
-git clone [https://github.com/Malleshgoud/Selenium\-POM\-Jenkins\-Integration.git](https://github.com/Malleshgoud/Selenium-POM-Jenkins-Integration.git)
+Upcoming modules:
 
-### Navigate To Project Directory
-
-cd Selenium\-POM\-Jenkins
-
-### Verify Maven Installation
-
-mvn \-version
-
-### Execute Project
-
-mvn clean test
+- Cart Page
+- Checkout Page
+- Checkout Overview Page
+- Order Confirmation Page
+- Logout Functionality
 
 ---
 
-## ▶️ Running Tests
+## Planned End\-to\-End Flow
 
-### Option 1: Using Maven
+Login
 
-mvn clean test
+↓
 
-### Option 2: Using IntelliJ
+Products Page
 
-Right Click LoginLogoutTest
+↓
 
-→ Run
+Add Product To Cart
 
-### Option 3: Using TestNG Suite
+↓
 
-Right Click testng.xml
+Cart Page
 
-→ Run
+↓
+
+Checkout
+
+↓
+
+Order Review
+
+↓
+
+Order Confirmation
+
+↓
+
+Logout
 
 ---
 
-## 🔄 Maven Execution Flow
-
-mvn clean test
-
-clean
-
-↓
-
-Deletes old target folder
-
-test
-
-↓
-
-Compiles Code
-
-Surefire Plugin
-
-↓
-
-Executes TestNG Tests
-
-Selenium
-
-↓
-
-Launches Browser
-
-Test Execution
-
-↓
-
-Pass/Fail Result
-
----
-
-## 🔀 Git Workflow Used
-
-### Initialize Repository
-
-git init
-
-### Add Files
-
-git add .
-
-### Commit Files
-
-git commit \-m "Initial Selenium Framework"
-
-### Push To GitHub
-
-git push \-u origin main
-
----
-
-## 🔧 Jenkins Integration
-
-Jenkins was configured with:
-
-- JDK 21
-- Maven
-- Git
-
-### Freestyle Job Configuration
-
-Source Code Management:
-
-Git
-
-Repository URL:
-
-[https://github.com/Malleshgoud/Selenium\-POM\-Jenkins\-Integration.git](https://github.com/Malleshgoud/Selenium-POM-Jenkins-Integration.git)
-
-Build Step:
-
-Invoke Top\-Level Maven Targets
-
-Goals:
-
-clean test
-
----
-
-## 🔄 Jenkins Execution Flow
-
-Developer Pushes Code
-
-↓
-
-GitHub Repository
-
-↓
-
-Jenkins Job Trigger
-
-↓
-
-Clone Repository
-
-↓
-
-Maven Build
-
-↓
-
-Execute Selenium Tests
-
-↓
-
-Generate Build Result
-
----
-
-## 🎯 CI/CD Flow
-
-IntelliJ
-
-↓
-
-Git Commit
-
-↓
+## Jenkins Execution Flow
 
 GitHub
 
@@ -294,41 +175,37 @@ Jenkins
 
 ↓
 
-Maven
+Checkout Source Code
 
 ↓
 
-TestNG
+Maven Build
 
 ↓
 
-Selenium
+TestNG Execution
 
 ↓
 
-Build Success/Failure
+Selenium Test Execution
+
+↓
+
+Build Result
 
 ---
 
-## 🧩 Challenges Faced During Implementation
+## Challenges Faced
 
 ### Challenge 1
 
 Issue:
 
-Unable to find CDP implementation matching browser version
-
-Cause:
-
-Chrome browser version mismatch with Selenium DevTools support.
+Chrome browser CDP version mismatch warning.
 
 Resolution:
 
-Updated Selenium dependency to the latest stable version.
-
-Learning:
-
-Always keep Selenium and browser versions compatible.
+Updated Selenium dependency to latest version.
 
 ---
 
@@ -336,41 +213,15 @@ Always keep Selenium and browser versions compatible.
 
 Issue:
 
-Browser not launching properly
+Jenkins could not find revision to build.
 
 Cause:
 
-Older Selenium version.
+Repository branch was main while Jenkins was configured for master.
 
 Resolution:
 
-Updated Selenium dependency.
-
-Result:
-
-Browser launched successfully.
-
----
-
-### Challenge 3
-
-Issue:
-
-Couldn't find any revision to build
-
-Cause:
-
-Jenkins was looking for:
-
-master
-
-while GitHub repository used:
-
-main
-
-Resolution:
-
-Changed branch configuration from:
+Updated Jenkins branch configuration from:
 
 \*/master
 
@@ -380,109 +231,66 @@ to:
 
 ---
 
-### Challenge 4
+### Challenge 3
 
 Issue:
 
-No plugin found for prefix 'Goals'
-
-Cause:
-
-Entered:
-
-Goals:
-
-clean test
-
-inside Jenkins Maven Goals textbox.
+Maven build failure caused by invalid goal syntax.
 
 Resolution:
 
-Changed value to:
+Configured Maven goal correctly as:
 
 clean test
 
 ---
 
-### Challenge 5
+### Challenge 4
 
 Issue:
 
-Current branch main has no upstream branch
+Local branch not linked to remote repository.
 
 Resolution:
 
 git push \-u origin main
 
-Learning:
-
-Need to establish tracking between local and remote branches.
-
 ---
 
-## 📚 Key Learnings
+## Key Learnings
 
-Through this project I learned:
-
-- Selenium Framework Design
-- Page Object Model (POM)
-- Maven Dependency Management
+- Selenium Framework Development
+- Page Object Model
 - Maven Build Lifecycle
 - TestNG Framework
-- Git Fundamentals
-- GitHub Repository Management
-- Jenkins Installation and Configuration
-- Continuous Integration Concepts
-- Build Troubleshooting Techniques
+- Git and GitHub
+- Jenkins CI Integration
+- Build Troubleshooting
+- Automation Framework Design
 
 ---
 
-## 🚀 Future Enhancements
-
-The following improvements are planned:
+## Future Enhancements
 
 - ConfigReader Utility
+- Explicit Wait Utilities
+- Screenshot Capture
 - Extent Reports
-- Log4j Logging
-- Screenshot Capture On Failure
+- Log4j Integration
 - Jenkins Pipeline (Jenkinsfile)
 - GitHub Webhooks
-- Docker Integration
-- Selenium Grid
 - Parallel Execution
 - Cross Browser Testing
-- Data Driven Framework
+- Selenium Grid
+- Docker Integration
 
 ---
 
-## 💡 Interview Project Explanation
-
-This project demonstrates an end\-to\-end Selenium automation framework developed using Java, TestNG, Maven, and Page Object Model. The framework is integrated with GitHub for source control and Jenkins for Continuous Integration. Jenkins clones the latest code from GitHub and executes the framework using Maven commands, providing automated test execution and build validation.
-
----
-
-## 👨‍💻 Author
+## Author
 
 Mallesh Goud
 
 QA Automation Engineer
 
-Skills:
-
-- Selenium Automation
-- Java
-- TestNG
-- Maven
-- Git & GitHub
-- Jenkins
-- AWS Fundamentals
-- DevOps Learning Journey
-
----
-
-## ⭐ Support
-
-If you found this project useful, please consider starring the repository.
-
-Happy Learning and Happy Testing\!
+This repository is being enhanced incrementally to build a complete industry\-standard Selenium automation framework.
 
