@@ -1,0 +1,266 @@
+Phase -1 - Beginner Level
+-----------------------------
+# Selenium Framework with GitHub and Jenkins - Interview Notes
+
+## Project Overview
+
+I developed an automation framework using:
+
+- Java
+- Selenium WebDriver
+- TestNG
+- Maven
+- Page Object Model (POM)
+- Git
+- GitHub
+- Jenkins
+
+The framework automates Login and Logout functionality and is integrated with Jenkins for Continuous Integration.
+
+---
+
+## Framework Structure
+
+src
+
+main/java
+
+pages
+- LoginPage
+- HomePage
+
+utils
+- DriverFactory
+
+test/java
+
+tests
+- BaseTest
+- LoginLogoutTest
+
+resources
+- config.properties
+
+pom.xml
+testng.xml
+
+---
+
+## Why Page Object Model?
+
+Page Object Model improves:
+
+- Code reusability
+- Maintainability
+- Readability
+
+Example:
+
+Login page elements and methods are stored in LoginPage.java
+
+Home page elements and methods are stored in HomePage.java
+
+Test classes only contain test logic.
+
+---
+
+## What Happens When Jenkins Executes?
+
+Jenkins Job
+↓
+GitHub Repository
+↓
+Clone Latest Code
+↓
+Execute Maven Command
+↓
+mvn clean test
+↓
+Maven Surefire Plugin
+↓
+Execute TestNG Tests
+↓
+Launch Browser
+↓
+Run Selenium Scripts
+↓
+Generate Build Result
+
+---
+
+## Maven Lifecycle Explanation
+
+Command:
+
+mvn clean test
+
+clean
+- Deletes old target folder
+
+test
+- Compiles project
+- Executes TestNG tests
+
+---
+
+## How Maven Knows Which Test to Execute?
+
+In my current framework, I did NOT configure suiteXmlFiles in pom.xml.
+
+Therefore Maven Surefire Plugin automatically finds classes like:
+
+- LoginTest
+- LoginLogoutTest
+
+and executes them.
+
+Because my test class contains:
+
+@Test
+
+annotation.
+
+---
+
+## What Is Maven Surefire Plugin?
+
+Surefire Plugin is responsible for executing unit tests and TestNG tests.
+
+Without Surefire:
+
+mvn test
+
+cannot execute TestNG test cases.
+
+---
+
+## GitHub Integration
+
+Git commands used:
+
+git init
+
+git add .
+
+git commit -m "Initial Framework"
+
+git push -u origin main
+
+Purpose:
+
+- Version control
+- Source code management
+- Team collaboration
+
+---
+
+## Jenkins Integration
+
+Configured:
+
+- JDK 21
+- Maven
+- Git
+
+Created a Freestyle Project.
+
+Configured:
+
+Source Code Management
+→ GitHub Repository URL
+
+Build Step
+→ Invoke Top-Level Maven Targets
+
+Goals:
+clean test
+
+Jenkins automatically:
+
+1. Pulls code from GitHub
+2. Downloads Maven dependencies
+3. Executes Selenium tests
+4. Generates build status
+
+---
+
+## Issues Faced During Setup
+
+### Issue 1
+
+Error:
+
+Couldn't find any revision to build
+
+Reason:
+
+Jenkins was looking for master branch.
+
+Fix:
+
+Changed branch from:
+
+*/master
+
+to
+
+*/main
+
+---
+
+### Issue 2
+
+Error:
+
+No plugin found for prefix 'Goals'
+
+Reason:
+
+Entered:
+
+Goals:
+clean test
+
+inside Jenkins Goals textbox.
+
+Fix:
+
+Entered only:
+
+clean test
+
+---
+
+## Interview Question
+
+What is CI/CD?
+
+CI = Continuous Integration
+
+Whenever code is pushed to GitHub, Jenkins automatically pulls latest code and executes automation tests.
+
+Benefits:
+
+- Early defect detection
+- Faster feedback
+- Reduced manual effort
+
+---
+
+## Future Enhancements
+
+1. ConfigReader
+2. Extent Reports
+3. Log4j
+4. Screenshots on Failure
+5. Jenkins Pipeline
+6. GitHub Webhooks
+7. Docker Integration
+8. Selenium Grid
+9. Parallel Execution
+
+---
+
+## One-Line Project Explanation
+
+"I developed a Selenium Java Page Object Model framework integrated with Maven, GitHub, and Jenkins. Jenkins pulls code from GitHub and executes automated TestNG test cases using Maven commands, providing continuous integration for automation testing."
