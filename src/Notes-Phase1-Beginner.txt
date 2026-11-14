@@ -263,4 +263,11 @@ Benefits:
 
 ## One-Line Project Explanation
 
-"I developed a Selenium Java Page Object Model framework integrated with Maven, GitHub, and Jenkins. Jenkins pulls code from GitHub and executes automated TestNG test cases using Maven commands, providing continuous integration for automation testing."
+"I developed a Selenium Java Page Object Model framework integrated with Maven, GitHub, and Jenkins.
+ Jenkins pulls code from GitHub and executes automated TestNG test cases using Maven commands,
+ providing continuous integration for automation testing."
+
+ Jenkins is configured with a GitHub repository and Maven.
+ When I click Build Now, Jenkins clones the latest code from GitHub and runs mvn clean test.
+  Maven uses the Surefire plugin to execute my TestNG test classes,
+   which launch the browser through Selenium WebDriver and execute the login/logout scenario."
