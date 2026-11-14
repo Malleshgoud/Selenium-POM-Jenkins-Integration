@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import pages.HomePage;
 import pages.LoginPage;
+import pages.ProductsPage;
 import utils.DriverFactory;
 
 public class LoginTest {
@@ -17,43 +17,37 @@ public class LoginTest {
         System.out.println("Before Method Started");
         driver = DriverFactory.initializeDriver();
 
-        driver.get("https://the-internet.herokuapp.com/login");
+        driver.get("https://www.saucedemo.com/");
 
         System.out.println("Application Opened");
     }
 
     @Test
-    public void loginLogoutTest() {
 
-        System.out.println("Test Started");
-
+    public void verifyLoginAndAddProduct() {
+        System.out.println("Entering username and password");
         LoginPage loginPage = new LoginPage(driver);
 
         loginPage.login(
-                "tomsmith",
-                "SuperSecretPassword!");
+                "standard_user",
+                "secret_sauce");
+        System.out.println("Login is success and user is navigated to products page");
+        ProductsPage productsPage =
+                new ProductsPage(driver);
 
-        Assert.assertTrue(driver.getCurrentUrl()
-                .contains("secure"));
-
-        System.out.println("Login Completed");
-
-        HomePage homePage = new HomePage(driver);
-
-        System.out.println("Entered Home Page");
-
-        homePage.logout();
-
-        System.out.println("Logout Completed");
-
-        Assert.assertTrue(driver.getCurrentUrl()
-                .contains("login"));
-        System.out.println("Navigated to Login page after successfull logout");
+        Assert.assertTrue(
+                productsPage.isProductsPageDisplayed());
+        System.out.println("Products page is displayed");
+        productsPage.addBackpackToCart();
+        System.out.println("Clicked on add to cart button - Backpack is added to cart");
+        productsPage.clickShoppingCart();
+        System.out.println("Clicked on shopping cart Icon and navigated to cart details page");
     }
 
     @AfterMethod
     public void tearDown() {
-
+        System.out.println("After Method Started");
+        System.out.println("Closing the browser");
         driver.quit();
     }
 }

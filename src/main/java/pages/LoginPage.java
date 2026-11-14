@@ -7,9 +7,9 @@ public class LoginPage {
 
     WebDriver driver;
 
-    By username = By.id("username");
+    By username = By.id("user-name");
     By password = By.id("password");
-    By loginBtn = By.cssSelector("button[type='submit']");
+    By loginBtn = By.id("login-button");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
