@@ -1,273 +1,296 @@
-Phase -1 - Beginner Level
------------------------------
-# Selenium Framework with GitHub and Jenkins - Interview Notes
+# SauceDemo Automation Framework
 
 ## Project Overview
 
-I developed an automation framework using:
+This project demonstrates an end\-to\-end Selenium Automation Framework developed using Java, Selenium WebDriver, TestNG, Maven, GitHub, and Jenkins.
 
-- Java
+The framework follows the Page Object Model (POM) design pattern and automates a complete e\-commerce workflow using the SauceDemo application.
+
+---
+
+## Application Under Test
+
+URL:
+
+[https://www.saucedemo.com/](https://www.saucedemo.com/)
+
+Test Credentials:
+
+Username: standard\_user
+
+Password: secret\_sauce
+
+---
+
+## Tech Stack
+
+- Java 21
 - Selenium WebDriver
 - TestNG
 - Maven
-- Page Object Model (POM)
 - Git
 - GitHub
 - Jenkins
-
-The framework automates Login and Logout functionality and is integrated with Jenkins for Continuous Integration.
+- Page Object Model (POM)
+- WebDriverManager
 
 ---
 
-## Framework Structure
+## Framework Features
+
+### Implemented
+
+✅ Login Functionality
+
+✅ Products Page Validation
+
+✅ GitHub Integration
+
+✅ Jenkins Integration
+
+✅ Maven Build Execution
+
+✅ TestNG Framework
+
+✅ Page Object Model Design
+
+---
+
+## Current Framework Structure
 
 src
 
-main/java
+│
 
-pages
-- LoginPage
-- HomePage
+├── main
 
-utils
-- DriverFactory
+│   └── java
 
-test/java
+│       ├── pages
 
-tests
-- BaseTest
-- LoginLogoutTest
+│       │   ├── LoginPage.java
 
-resources
-- config.properties
+│       │   └── ProductsPage.java
 
-pom.xml
-testng.xml
+│       │
 
----
+│       └── utils
 
-## Why Page Object Model?
+│           └── DriverFactory.java
 
-Page Object Model improves:
+│
 
-- Code reusability
-- Maintainability
-- Readability
+├── test
 
-Example:
+│   └── java
 
-Login page elements and methods are stored in LoginPage.java
+│       └── tests
 
-Home page elements and methods are stored in HomePage.java
+│           ├── BaseTest.java
 
-Test classes only contain test logic.
+│           └── LoginTest.java
 
----
+│
 
-## What Happens When Jenkins Executes?
+├── testng.xml
 
-Jenkins Job
-↓
-GitHub Repository
-↓
-Clone Latest Code
-↓
-Execute Maven Command
-↓
-mvn clean test
-↓
-Maven Surefire Plugin
-↓
-Execute TestNG Tests
-↓
-Launch Browser
-↓
-Run Selenium Scripts
-↓
-Generate Build Result
+├── pom.xml
+
+└── README.md
 
 ---
 
-## Maven Lifecycle Explanation
+## Implemented Test Scenario
 
-Command:
+### Login Validation
 
-mvn clean test
+1. Launch Browser
+2. Navigate to SauceDemo Application
+3. Enter Username
+4. Enter Password
+5. Click Login
+6. Verify Products Page Displayed
 
-clean
-- Deletes old target folder
+Expected Result:
 
-test
-- Compiles project
-- Executes TestNG tests
-
----
-
-## How Maven Knows Which Test to Execute?
-
-In my current framework, I did NOT configure suiteXmlFiles in pom.xml.
-
-Therefore Maven Surefire Plugin automatically finds classes like:
-
-- LoginTest
-- LoginLogoutTest
-
-and executes them.
-
-Because my test class contains:
-
-@Test
-
-annotation.
+User should successfully navigate to the Products page.
 
 ---
 
-## What Is Maven Surefire Plugin?
+## In Progress
 
-Surefire Plugin is responsible for executing unit tests and TestNG tests.
+The framework is currently being expanded to support complete end\-to\-end e\-commerce automation.
 
-Without Surefire:
+Upcoming modules:
 
-mvn test
-
-cannot execute TestNG test cases.
-
----
-
-## GitHub Integration
-
-Git commands used:
-
-git init
-
-git add .
-
-git commit -m "Initial Framework"
-
-git push -u origin main
-
-Purpose:
-
-- Version control
-- Source code management
-- Team collaboration
+- Cart Page
+- Checkout Page
+- Checkout Overview Page
+- Order Confirmation Page
+- Logout Functionality
 
 ---
 
-## Jenkins Integration
+## Planned End\-to\-End Flow
 
-Configured:
+Login
 
-- JDK 21
-- Maven
-- Git
+  ↓
 
-Created a Freestyle Project.
+Products Page
 
-Configured:
+  ↓
 
-Source Code Management
-→ GitHub Repository URL
+Add Product To Cart
 
-Build Step
-→ Invoke Top-Level Maven Targets
+  ↓
 
-Goals:
-clean test
+Cart Page
 
-Jenkins automatically:
+  ↓
 
-1. Pulls code from GitHub
-2. Downloads Maven dependencies
-3. Executes Selenium tests
-4. Generates build status
+Checkout
 
----
+  ↓
 
-## Issues Faced During Setup
+Order Review
 
-### Issue 1
+  ↓
 
-Error:
+Order Confirmation
 
-Couldn't find any revision to build
+  ↓
 
-Reason:
-
-Jenkins was looking for master branch.
-
-Fix:
-
-Changed branch from:
-
-*/master
-
-to
-
-*/main
+Logout
 
 ---
 
-### Issue 2
+## Jenkins Execution Flow
 
-Error:
+GitHub
 
-No plugin found for prefix 'Goals'
+   ↓
 
-Reason:
+Jenkins
 
-Entered:
+   ↓
 
-Goals:
-clean test
+Checkout Source Code
 
-inside Jenkins Goals textbox.
+   ↓
 
-Fix:
+Maven Build
 
-Entered only:
+   ↓
+
+TestNG Execution
+
+   ↓
+
+Selenium Test Execution
+
+   ↓
+
+Build Result
+
+---
+
+## Challenges Faced
+
+### Challenge 1
+
+Issue:
+
+Chrome browser CDP version mismatch warning.
+
+Resolution:
+
+Updated Selenium dependency to latest version.
+
+---
+
+### Challenge 2
+
+Issue:
+
+Jenkins could not find revision to build.
+
+Cause:
+
+Repository branch was main while Jenkins was configured for master.
+
+Resolution:
+
+Updated Jenkins branch configuration from:
+
+\*/master
+
+to:
+
+\*/main
+
+---
+
+### Challenge 3
+
+Issue:
+
+Maven build failure caused by invalid goal syntax.
+
+Resolution:
+
+Configured Maven goal correctly as:
 
 clean test
 
 ---
 
-## Interview Question
+### Challenge 4
 
-What is CI/CD?
+Issue:
 
-CI = Continuous Integration
+Local branch not linked to remote repository.
 
-Whenever code is pushed to GitHub, Jenkins automatically pulls latest code and executes automation tests.
+Resolution:
 
-Benefits:
+git push \-u origin main
 
-- Early defect detection
-- Faster feedback
-- Reduced manual effort
+---
+
+## Key Learnings
+
+- Selenium Framework Development
+- Page Object Model
+- Maven Build Lifecycle
+- TestNG Framework
+- Git and GitHub
+- Jenkins CI Integration
+- Build Troubleshooting
+- Automation Framework Design
 
 ---
 
 ## Future Enhancements
 
-1. ConfigReader
-2. Extent Reports
-3. Log4j
-4. Screenshots on Failure
-5. Jenkins Pipeline
-6. GitHub Webhooks
-7. Docker Integration
-8. Selenium Grid
-9. Parallel Execution
+- ConfigReader Utility
+- Explicit Wait Utilities
+- Screenshot Capture
+- Extent Reports
+- Log4j Integration
+- Jenkins Pipeline (Jenkinsfile)
+- GitHub Webhooks
+- Parallel Execution
+- Cross Browser Testing
+- Selenium Grid
+- Docker Integration
 
 ---
 
-## One-Line Project Explanation
+## Author
 
-"I developed a Selenium Java Page Object Model framework integrated with Maven, GitHub, and Jenkins.
- Jenkins pulls code from GitHub and executes automated TestNG test cases using Maven commands,
- providing continuous integration for automation testing."
+Mallesh Goud
 
- Jenkins is configured with a GitHub repository and Maven.
- When I click Build Now, Jenkins clones the latest code from GitHub and runs mvn clean test.
-  Maven uses the Surefire plugin to execute my TestNG test classes,
-   which launch the browser through Selenium WebDriver and execute the login/logout scenario."
+QA Automation Engineer
+
+This repository is being enhanced incrementally to build a complete industry\-standard Selenium automation framework.
+
