@@ -2,14 +2,14 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Wait;
-import utils.WaitUtils;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LogoutPage {
 
     WebDriver driver;
-    WaitUtils waitUtils = new WaitUtils(driver);
 
     public LogoutPage(WebDriver driver) {
         this.driver = driver;
@@ -24,7 +24,16 @@ public class LogoutPage {
     public void logout() {
 
         driver.findElement(menuButton).click();
-        waitUtils.waitForElementVisible((WebElement) logoutButton);
+
+        WebDriverWait wait =
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(10));
+
+        wait.until(
+                ExpectedConditions
+                        .elementToBeClickable(
+                                logoutButton));
+
         driver.findElement(logoutButton).click();
     }
 }
