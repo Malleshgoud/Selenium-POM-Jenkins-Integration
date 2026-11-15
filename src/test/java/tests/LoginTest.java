@@ -30,7 +30,6 @@ public class LoginTest extends BaseTest{
 
         Assert.assertTrue(
                 productsPage.isProductsPageDisplayed());
-        System.out.println("Products page is displayed");
 
         System.out.println("Products page is displayed");
         Thread.sleep(2000); // Added sleep to wait for the page to load completely
