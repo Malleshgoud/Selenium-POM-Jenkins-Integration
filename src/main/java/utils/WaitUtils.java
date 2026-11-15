@@ -2,7 +2,6 @@ package utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,14 +15,47 @@ public class WaitUtils {
         this.driver = driver;
     }
 
-
-    public void waitForElementVisible(WebElement element) {
+    public void waitForElementVisible(By locator) {
 
         WebDriverWait wait =
                 new WebDriverWait(driver,
                         Duration.ofSeconds(10));
 
         wait.until(
-                ExpectedConditions.visibilityOf(element));
+                ExpectedConditions
+                        .visibilityOfElementLocated(locator));
+    }
+
+    public void waitForElementClickable(By locator) {
+
+        WebDriverWait wait =
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(10));
+
+        wait.until(
+                ExpectedConditions
+                        .elementToBeClickable(locator));
+    }
+
+    public void waitForUrlContains(String partialUrl) {
+
+        WebDriverWait wait =
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(10));
+
+        wait.until(
+                ExpectedConditions
+                        .urlContains(partialUrl));
+    }
+
+    public void waitForTitleContains(String title) {
+
+        WebDriverWait wait =
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(10));
+
+        wait.until(
+                ExpectedConditions
+                        .titleContains(title));
     }
 }
