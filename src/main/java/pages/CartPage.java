@@ -12,15 +12,21 @@ public class CartPage extends BasePage{
     }
 
     private By cartItem =
-            By.xpath("//a/div[text()='Sauce Labs Backpack']");
-
+            By.className("inventory_item_name");
     private By checkoutButton =
             By.id("checkout");
 
     public boolean verifyProductInCart() {
 
-        return driver.findElement(cartItem)
-                .isDisplayed();
+
+        waitUtils.waitForElementVisible(cartItem);
+
+        String productName =
+                driver.findElement(cartItem)
+                        .getText();
+
+        return productName.equals(
+                "Sauce Labs Backpack");
     }
 
     public void clickCheckout() {
