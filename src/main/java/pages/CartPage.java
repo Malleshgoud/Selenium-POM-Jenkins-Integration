@@ -3,12 +3,12 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CartPage {
+public class CartPage extends BasePage{
 
-    WebDriver driver;
 
     public CartPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+        //this.driver = driver;
     }
 
     private By cartItem =

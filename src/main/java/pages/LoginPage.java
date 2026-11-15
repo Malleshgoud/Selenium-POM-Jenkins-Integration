@@ -3,9 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
 
-    WebDriver driver;
+
 
     By username = By.id("user-name");
     By password = By.id("password");
@@ -13,7 +13,9 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver)
     {
-        this.driver = driver;
+        super(driver);
+        //commented out the below line as we are calling the super class constructor to initialize the driver
+//this.driver = driver;
     }
 
     public void login(String user, String pass) {

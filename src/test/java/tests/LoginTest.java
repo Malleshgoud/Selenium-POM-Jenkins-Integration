@@ -10,19 +10,7 @@ import utils.DriverFactory;
 
 import java.io.FileNotFoundException;
 
-public class LoginTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        System.out.println("Before Method Started");
-        driver = DriverFactory.initializeDriver();
-
-        driver.get(ConfigReader.getProperty("url"));
-
-        System.out.println("Application Opened");
-    }
+public class LoginTest extends BaseTest{
 
     @Test
     public void verifyEndToEndPurchase() throws InterruptedException {
@@ -77,10 +65,5 @@ public class LoginTest {
         System.out.println("Clicked on logout button and user is logged out successfully");
     }
 
-    @AfterMethod
-    public void tearDown() {
-        System.out.println("After Method Started");
-        System.out.println("Closing the browser");
-        driver.quit();
-    }
+
 }

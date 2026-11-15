@@ -3,12 +3,12 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ProductsPage {
+public class ProductsPage extends BasePage {
 
-    WebDriver driver;
 
-    public ProductsPage(WebDriver driver) {
-        this.driver = driver;
+    public ProductsPage(WebDriver driver)
+    {
+        super(driver);
     }
 
     private By pageTitle =

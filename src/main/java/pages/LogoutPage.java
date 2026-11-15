@@ -4,14 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.WaitUtils;
 
-public class LogoutPage {
+public class LogoutPage extends BasePage {
 
-    WebDriver driver;
+
     WaitUtils waitUtils;
 
     public LogoutPage(WebDriver driver) {
 
-        this.driver = driver;
+        super(driver);
         waitUtils = new WaitUtils(driver);
     }
 
