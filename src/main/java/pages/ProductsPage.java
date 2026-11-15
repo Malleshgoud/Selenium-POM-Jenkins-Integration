@@ -32,6 +32,7 @@ public class ProductsPage extends BasePage {
 
     public void clickShoppingCart() {
 
+        waitUtils.waitForUrlContains("cart.html");
         driver.findElement(shoppingCart).click();
     }
 

@@ -24,7 +24,10 @@ public class CartPage extends BasePage{
     }
 
     public void clickCheckout() {
-
+        System.out.println(
+                "Checkout button count : "
+                        + driver.findElements(
+                        By.id("checkout")).size());
         waitUtils.waitForElementClickable(
                 checkoutButton);
         driver.findElement(checkoutButton)
