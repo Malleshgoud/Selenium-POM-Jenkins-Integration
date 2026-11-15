@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class ProductsPage extends BasePage {
@@ -29,8 +30,21 @@ public class ProductsPage extends BasePage {
 
     public void clickShoppingCart() {
 
-        waitUtils.waitForUrlContains("cart.html");
-        driver.findElement(shoppingCart).click();
+
+
+            waitUtils.waitForElementClickable(
+                    shoppingCart);
+
+            JavascriptExecutor js =
+                    (JavascriptExecutor) driver;
+
+            js.executeScript(
+                    "arguments[0].click();",
+                    driver.findElement(shoppingCart));
+
+            waitUtils.waitForUrlContains(
+                    "cart.html");
+
     }
 
 }
