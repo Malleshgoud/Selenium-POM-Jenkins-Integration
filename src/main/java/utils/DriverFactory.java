@@ -44,7 +44,7 @@ public class DriverFactory {
 //        driver = new ChromeDriver(options);
 
         ChromeOptions options = new ChromeOptions();
-
+        options.addArguments("--incognito");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-save-password-bubble");
         options.addArguments("--disable-popup-blocking");

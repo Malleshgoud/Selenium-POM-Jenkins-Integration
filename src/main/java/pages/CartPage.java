@@ -25,6 +25,8 @@ public class CartPage extends BasePage{
 
     public void clickCheckout() {
 
+        waitUtils.waitForElementClickable(
+                checkoutButton);
         driver.findElement(checkoutButton)
                 .click();
     }
