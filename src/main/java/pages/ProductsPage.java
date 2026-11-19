@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class ProductsPage extends BasePage {
     public ProductsPage(WebDriver driver)
@@ -19,7 +20,7 @@ public class ProductsPage extends BasePage {
             By.className("shopping_cart_link");
 
     public boolean isProductsPageDisplayed() {
-
+        Assert.assertTrue(false);
         return driver.findElement(pageTitle).isDisplayed();
     }
 
@@ -29,6 +30,7 @@ public class ProductsPage extends BasePage {
     }
 
     public void clickShoppingCart() {
+
 
 
 

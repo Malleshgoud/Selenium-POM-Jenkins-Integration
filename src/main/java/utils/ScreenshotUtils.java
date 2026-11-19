@@ -13,21 +13,29 @@ import java.util.Date;
 
 public class ScreenshotUtils {
 
-    public static void captureScreenshot(
+    public static String captureScreenshot(
             WebDriver driver,
             String testName) {
+
         String timeStamp =
                 new SimpleDateFormat(
                         "yyyyMMdd_HHmmss")
                         .format(new Date());
+
+        String filePath =
+                "screenshots/"
+                        + testName
+                        + "_FAILED_"
+                        + timeStamp
+                        + ".png";
+
         File source =
                 ((TakesScreenshot) driver)
                         .getScreenshotAs(
                                 OutputType.FILE);
 
         File destination =
-                new File("screenshots/"
-                        + testName + "_"+timeStamp+".png");
+                new File(filePath);
 
         destination.getParentFile().mkdirs();
 
@@ -42,6 +50,8 @@ public class ScreenshotUtils {
 
             e.printStackTrace();
         }
+
+        return filePath;
     }
     public static void deleteOldScreenshots() {
 
