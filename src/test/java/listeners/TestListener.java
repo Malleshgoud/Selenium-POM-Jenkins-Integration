@@ -5,6 +5,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import tests.BaseTest;
 import utils.ExtentManager;
+import utils.ExtentTestManager;
 import utils.ScreenshotUtils;
 import com.aventstack.extentreports.MediaEntityBuilder;
 
@@ -16,16 +17,12 @@ public class TestListener implements ITestListener {
     private static ExtentTest test;
 
     @Override
-    public void onTestStart(
-            ITestResult result) {
+    public void onTestStart(ITestResult result) {
 
         test = extent.createTest(
-                result.getMethod()
-                        .getMethodName());
+                result.getMethod().getMethodName());
 
-        System.out.println(
-                "STARTED : "
-                        + result.getName());
+        ExtentTestManager.setTest(test);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class ProductsPage extends BasePage {
             By.className("shopping_cart_link");
 
     public boolean isProductsPageDisplayed() {
-        Assert.assertTrue(false);
+
         return driver.findElement(pageTitle).isDisplayed();
     }
 

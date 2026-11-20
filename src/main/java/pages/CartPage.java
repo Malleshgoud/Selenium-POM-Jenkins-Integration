@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.ReportManager;
 
 public class CartPage extends BasePage{
 
@@ -18,15 +19,28 @@ public class CartPage extends BasePage{
 
     public boolean verifyProductInCart() {
 
-
         waitUtils.waitForElementVisible(cartItem);
 
         String productName =
                 driver.findElement(cartItem)
                         .getText();
 
-        return productName.equals(
-                "Sauce Labs Backpack");
+        boolean status =
+                productName.equals("Sauce Labs Backpack");
+
+        if(status) {
+
+            ReportManager.pass(
+                    "Product is present in cart : "
+                            + productName);
+        }
+        else {
+
+            ReportManager.fail(
+                    "Product is not present in cart");
+        }
+
+        return status;
     }
 
     public void clickCheckout() {
@@ -38,5 +52,7 @@ public class CartPage extends BasePage{
                 checkoutButton);
         driver.findElement(checkoutButton)
                 .click();
+        ReportManager.info(
+                "Clicked on checkout button");
     }
 }

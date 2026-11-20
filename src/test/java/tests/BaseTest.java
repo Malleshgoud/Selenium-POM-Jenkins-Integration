@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import utils.ConfigReader;
 import utils.DriverFactory;
+import utils.ReportManager;
 import utils.ScreenshotUtils;
 
 public class BaseTest {
@@ -23,11 +24,12 @@ public class BaseTest {
     @BeforeMethod
     public void setup() {
         System.out.println("Browser Type: " + ConfigReader.getProperty("browser"));
-        driver = DriverFactory.initializeDriver();
+          driver = DriverFactory.initializeDriver();
         System.out.println("Browser Launched: " + ConfigReader.getProperty("browser"));
-        driver.get(ConfigReader.getProperty("url"));
+          driver.get(ConfigReader.getProperty("url"));
         System.out.println("Navigated to URL: " + ConfigReader.getProperty("url"));
-        System.out.println("Application Launched");
+         System.out.println("Application Launched");
+
     }
     @AfterMethod
     public void tearDown() {
