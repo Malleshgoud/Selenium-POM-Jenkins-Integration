@@ -30,7 +30,15 @@ public class ProductsPage extends BasePage {
 
     public void addBackpackToCart() {
         ReportManager.pass("Clicking on Add to Cart button for backpack");
-        driver.findElement(addBackPackButton).click();
+        waitUtils.waitForElementClickable(
+                addBackPackButton);
+
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+        driver.findElement(addBackPackButton));
         ReportManager.pass("Clicked on Add to Cart button for backpack");
     }
 
@@ -50,6 +58,7 @@ public class ProductsPage extends BasePage {
             waitUtils.waitForUrlContains(
                     "cart.html");
         ReportManager.pass("Waiting for URL to contain 'cart.html'");
+        System.out.println("Current URL: " + driver.getCurrentUrl());
         ScreenshotUtils.captureAndAttachScreenshot(
                 driver,
                 "ProductsPage",
