@@ -31,7 +31,7 @@ public class ExtentManager {
 
             extent.setSystemInfo(
                     "Environment",
-                    "QA");
+                    "DEV");
 
             extent.setSystemInfo(
                     "Author",
