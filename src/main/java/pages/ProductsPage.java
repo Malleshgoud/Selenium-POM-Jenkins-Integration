@@ -33,12 +33,9 @@ public class ProductsPage extends BasePage {
         waitUtils.waitForElementClickable(
                 addBackPackButton);
 
-        JavascriptExecutor js =
-                (JavascriptExecutor) driver;
-
-        js.executeScript(
-                "arguments[0].click();",
-        driver.findElement(addBackPackButton));
+     javaScriptUtils.clickUsingJS(
+                driver.findElement(addBackPackButton)
+                );
         ReportManager.pass("Clicked on Add to Cart button for backpack");
     }
 
@@ -48,12 +45,9 @@ public class ProductsPage extends BasePage {
             waitUtils.waitForElementClickable(
                     shoppingCart);
 
-            JavascriptExecutor js =
-                    (JavascriptExecutor) driver;
+         javaScriptUtils.clickUsingJS(
+                driver.findElement(shoppingCart));
 
-            js.executeScript(
-                    "arguments[0].click();",
-                    driver.findElement(shoppingCart));
         ReportManager.pass("Clicked on Shopping Cart link");
             waitUtils.waitForUrlContains(
                     "cart.html");
