@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utils.ReportManager;
+import utils.ScreenshotUtils;
 
 public class ProductsPage extends BasePage {
     public ProductsPage(WebDriver driver)
@@ -21,19 +23,20 @@ public class ProductsPage extends BasePage {
 
     public boolean isProductsPageDisplayed() {
 
+        ReportManager.pass("Verifying if Products page is displayed");
         return driver.findElement(pageTitle).isDisplayed();
+
     }
 
     public void addBackpackToCart() {
-
+        ReportManager.pass("Clicking on Add to Cart button for backpack");
         driver.findElement(addBackPackButton).click();
+        ReportManager.pass("Clicked on Add to Cart button for backpack");
     }
 
     public void clickShoppingCart() {
 
-
-
-
+        ReportManager.pass("Clicking on Shopping Cart link");
             waitUtils.waitForElementClickable(
                     shoppingCart);
 
@@ -43,9 +46,14 @@ public class ProductsPage extends BasePage {
             js.executeScript(
                     "arguments[0].click();",
                     driver.findElement(shoppingCart));
-
+        ReportManager.pass("Clicked on Shopping Cart link");
             waitUtils.waitForUrlContains(
                     "cart.html");
+        ReportManager.pass("Waiting for URL to contain 'cart.html'");
+        ScreenshotUtils.captureAndAttachScreenshot(
+                driver,
+                "ProductsPage",
+                "Products page displayed successfully");
 
     }
 

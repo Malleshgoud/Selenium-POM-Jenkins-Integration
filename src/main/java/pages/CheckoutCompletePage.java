@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.ReportManager;
+import utils.ScreenshotUtils;
 
 public class CheckoutCompletePage extends BasePage {
 
@@ -20,11 +22,35 @@ public class CheckoutCompletePage extends BasePage {
 
         driver.findElement(finishButton)
                 .click();
+        ReportManager.pass("Clicked on Finish button");
     }
 
     public boolean verifyOrderSuccess() {
 
-        return driver.findElement(successMessage)
-                .isDisplayed();
+        String message =
+                driver.findElement(successMessage)
+                        .getText();
+
+        boolean status =
+                message.contains(
+                        "Thank you for your order!");
+
+        if (status) {
+
+            ReportManager.pass(
+                    "Order success message displayed : "
+                            + message);
+        }
+        else {
+
+            ReportManager.fail(
+                    "Order success message not displayed");
+        }
+        ScreenshotUtils.captureAndAttachScreenshot(
+                driver,
+                "CheckoutCompletePage",
+                "Order success message verification");
+        return status;
+
     }
 }

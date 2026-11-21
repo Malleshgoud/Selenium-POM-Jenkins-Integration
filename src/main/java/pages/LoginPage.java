@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.ReportManager;
+import utils.ScreenshotUtils;
 
 public class LoginPage extends BasePage{
 
@@ -22,11 +23,15 @@ public class LoginPage extends BasePage{
     public void login(String user, String pass) {
 
         driver.findElement(username).sendKeys(user);
-        ReportManager.pass("Entered username: " + user);
+        ReportManager.pass("Entered username successfully: " + user);
 
         driver.findElement(password).sendKeys(pass);
-ReportManager.pass("Entered password: " + pass);
+ReportManager.pass("Entered password successfully: ");
         driver.findElement(loginBtn).click();
         ReportManager.pass("Clicked on login button");
+        ScreenshotUtils.captureAndAttachScreenshot(
+                driver,
+                "Login",
+                "Login successful");
     }
 }

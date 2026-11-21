@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.ReportManager;
+import utils.ScreenshotUtils;
 
 public class CartPage extends BasePage{
 
@@ -18,7 +19,7 @@ public class CartPage extends BasePage{
             By.id("checkout");
 
     public boolean verifyProductInCart() {
-
+        ReportManager.pass("Verifying if product is present in cart");
         waitUtils.waitForElementVisible(cartItem);
 
         String productName =
@@ -48,11 +49,17 @@ public class CartPage extends BasePage{
                 "Checkout button count : "
                         + driver.findElements(
                         By.id("checkout")).size());
+        ReportManager.pass(
+                "Clicking on checkout button");
         waitUtils.waitForElementClickable(
                 checkoutButton);
         driver.findElement(checkoutButton)
                 .click();
         ReportManager.info(
                 "Clicked on checkout button");
+        ScreenshotUtils.captureAndAttachScreenshot(
+                driver,
+                "CartPage",
+                "Checkout button clicked successfully");
     }
 }

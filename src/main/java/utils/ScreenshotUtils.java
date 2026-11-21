@@ -1,5 +1,6 @@
 package utils;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -15,19 +16,20 @@ public class ScreenshotUtils {
 
     public static String captureScreenshot(
             WebDriver driver,
-            String testName) {
+            String stepName) {
 
         String timeStamp =
                 new SimpleDateFormat(
                         "yyyyMMdd_HHmmss")
                         .format(new Date());
 
+        String fileName =
+                stepName + "_" +
+                        timeStamp + ".png";
+
         String filePath =
-                "screenshots/"
-                        + testName
-                        + "_FAILED_"
-                        + timeStamp
-                        + ".png";
+                "reports/screenshots/"
+                        + fileName;
 
         File source =
                 ((TakesScreenshot) driver)
@@ -51,27 +53,35 @@ public class ScreenshotUtils {
             e.printStackTrace();
         }
 
-        return filePath;
+
+        return "screenshots/" + fileName;
     }
-    public static void deleteOldScreenshots() {
 
-        File folder = new File("screenshots");
+    public static void captureAndAttachScreenshot(
+            WebDriver driver,
+            String stepName,
+            String message) {
 
-        if (folder.exists() && folder.isDirectory()) {
+        try {
 
-            File[] files = folder.listFiles();
+            String screenshotPath =
+                    captureScreenshot(
+                            driver,
+                            stepName);
 
-            if (files != null) {
+            ExtentTestManager
+                    .getTest()
+                    .pass(
+                            message,
+                            MediaEntityBuilder
+                                    .createScreenCaptureFromPath(
+                                            screenshotPath)
+                                    .build());
+            System.out.println("Screenshot Path is=> " + screenshotPath);
 
-                for (File file : files) {
+        } catch (Exception e) {
 
-                    if (file.isFile()) {
-                        file.delete();
-                    }
-                }
-            }
+            e.printStackTrace();
         }
-
-        System.out.println("Old Screenshots Deleted");
     }
 }

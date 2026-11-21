@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.ScreenshotUtils;
 import utils.WaitUtils;
 
 public class LogoutPage extends BasePage {
@@ -30,5 +31,9 @@ public class LogoutPage extends BasePage {
         waitUtils.waitForElementClickable(logoutButton);
 
         driver.findElement(logoutButton).click();
+        ScreenshotUtils.captureAndAttachScreenshot(
+                driver,
+                "Logout",
+                "User logged out successfully");
     }
 }
