@@ -1,5 +1,6 @@
 
 pipeline {
+
     agent any
 
     stages {
@@ -19,22 +20,42 @@ pipeline {
     }
 
     post {
+
         always {
-            // Archive ExtentReports and screenshots
+
+            // Publish TestNG results in Jenkins
+            junit testResults: 'target/surefire-reports/TEST-*.xml',
+                  allowEmptyResults: true
+
+            // Archive TestNG reports
+            archiveArtifacts artifacts: 'target/surefire-reports/**',
+                             allowEmptyArchive: true
+
+            // Archive ExtentReports
             archiveArtifacts artifacts: 'reports/**',
                              allowEmptyArchive: true
 
-            // Publish Extent HTML Report
+            // Publish TestNG HTML report
+            publishHTML(target: [
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'target/surefire-reports',
+                reportFiles: 'emailable-report.html',
+                reportName: 'TestNG Report'
+            ])
+
+            // Publish ExtentReports
             publishHTML(target: [
                 allowMissing: true,
                 alwaysLinkToLastBuild: true,
                 keepAll: true,
                 reportDir: 'reports',
-                reportFiles: 'ExtentReport.html',
-                reportName: 'Extent Report'
+                reportFiles: 'TestAutomationExtentReport.html',
+                reportName: 'Enterprise Selenium Automation Extent Report'
             ])
 
-            echo 'Reports archived and published successfully'
+            echo 'TestNG and ExtentReports published successfully'
         }
     }
 }
