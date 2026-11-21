@@ -8,6 +8,7 @@ import pages.*;
 import utils.ConfigReader;
 import utils.DriverFactory;
 import utils.ReportManager;
+import utils.ScreenshotUtils;
 
 import java.io.FileNotFoundException;
 
@@ -47,6 +48,7 @@ public class LoginTest extends BaseTest{
         System.out.println("Clicked on shopping cart Icon and navigated to cart details page");
 
         System.out.println("Verifying the product is added to cart");
+
         Assert.assertTrue(cartPage.verifyProductInCart());
         System.out.println("Product is added to cart successfully");
         ReportManager.info("Proceed to Checkout");

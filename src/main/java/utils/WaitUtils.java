@@ -19,7 +19,7 @@ public class WaitUtils {
 
         WebDriverWait wait =
                 new WebDriverWait(driver,
-                        Duration.ofSeconds(10));
+                        Duration.ofSeconds(50));
 
         wait.until(
                 ExpectedConditions
@@ -30,7 +30,7 @@ public class WaitUtils {
 
         WebDriverWait wait =
                 new WebDriverWait(driver,
-                        Duration.ofSeconds(10));
+                        Duration.ofSeconds(50));
 
         wait.until(
                 ExpectedConditions

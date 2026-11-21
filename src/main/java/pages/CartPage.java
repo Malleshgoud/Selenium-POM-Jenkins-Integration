@@ -20,6 +20,7 @@ public class CartPage extends BasePage{
 
     public boolean verifyProductInCart() {
         ReportManager.pass("Verifying if product is present in cart");
+
         waitUtils.waitForElementVisible(cartItem);
 
         String productName =
